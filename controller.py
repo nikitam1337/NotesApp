@@ -1,20 +1,19 @@
-import csv
 import view
-import datetime
 import readNote
 import edit_a_note
 import createNewNote
 import deleteNote
 import getAllNotes
 import showListNotes
+import writeNote
 
 def start():
-    note_ID = 0
     while True:
         mode = view.get_operating_mode()
 
         if mode == 1: # 1 - Создать новую заметку
-            createNewNote.createNote()
+            newNote = createNewNote.createNote()
+            writeNote.writeNote(newNote)
 
         elif mode == 2: # 2 - Прочитать заметку
             notes = getAllNotes.get_all_notes()

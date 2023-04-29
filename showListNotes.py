@@ -1,4 +1,10 @@
 def showListNotes(allNotes):
     notes = allNotes
+    notes.sort(key=lambda k: k[3])
+    print()
+    
     for line in notes:
-        print("|" + line[1] + "| " + " Содержимое: " + line[2] + "\n")
+        print(f'ID: |{line[0]}| \n'
+              f'Заголовок: {line[1]} \n'
+              f'Содержимое: {line[2]} \n' 
+              f'Дата изменения:  {line[3]} \n')
