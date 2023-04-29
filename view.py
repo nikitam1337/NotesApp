@@ -18,5 +18,8 @@ def get_note_body():
     body = input('Введите тело заметки:')
     return body
 
+def get_new_body():
+    body = input('Введите новое содержимое заметки:')
+    return body
 
     

@@ -1,5 +1,8 @@
 import csv
 import view
+import datetime
+import readNote
+import edit_a_note
 
 
 # Выберите команду:\n\
@@ -12,22 +15,30 @@ import view
 # : '))
 
 def start():
-
+    note_ID = 0
     while True:
         mode = view.get_operating_mode()
-        note_ID = 0
+
         if mode == 1:
-            # note_ID = 1
+            note_ID = note_ID+1
             title = view.get_note_title()
             note_body = view.get_note_body()
-            header = ["ID", "Title", "Body", "Last_modified"]
-            with open("Notes.csv", "a", newline='',encoding="cp1251") as file:
-                # quoting=csv.QUOTE_NONNUMERIC
-                writer = csv.DictWriter(file, fieldnames=header, delimiter=';')
-                writer.writeheader()
+            dt_now = datetime.datetime.now()
+            headers = ["ID", "Title", "Body", "Last_modified"]
+            with open("Notes.csv", "a", newline='', encoding="UTF-8") as file:
+                writer = csv.DictWriter(
+                    file, fieldnames=headers, delimiter=';')
                 writer.writerow(
-                    {"ID": note_ID, "Title": title, "Body": note_body, "Last_modified": 2023})
+                    {"ID": note_ID, "Title": title, "Body": note_body, "Last_modified": dt_now})
             print('\n' + "Заметка успешно сохранена!" + '\n')
+        elif mode == 2:
+            readNote.read_note()
+
+        elif mode == 3: # 3 - Отредактировать заметку\n\
+            edit_a_note.edit_note()
+
+
+
         elif mode == 6:
             print('\n' + 'Завершение работы.' + '\n')
             break
